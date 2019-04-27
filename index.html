@@ -1,0 +1,123 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+     <!-- jQuery -->
+  <script src="https://code.jquery.com/jquery-2.2.4.min.js"></script>
+
+  <!-- Bootstrap CDN-->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+  <!-- Firebase Reference -->
+  <script src="https://www.gstatic.com/firebasejs/4.12.0/firebase.js"></script>
+</head>
+<body>
+   <div class="container">
+       <div class="row">
+           <div class="col-md-3">
+               <h1 class="trainName">Train Name</h1>
+           </div>
+           <div class="col-md-3">
+               <h1 class="destination">Destination </h1>
+           </div>
+           <div class="col-md-3">
+               <h1 class="arrivalTime">Arrival</h1>
+           </div>
+           <div class="col-md-3">
+               <h1 class="frequency">Frequency</h1>
+           </div>
+       </div>
+   </div>
+
+<script>
+
+
+
+
+    
+
+
+  // Initialize Firebase
+  var config = {
+    apiKey: "AIzaSyDRrT2-enmyuR8dgGySypE1IXpWtIhTl2M",
+    authDomain: "trainschedule-35655.firebaseapp.com",
+    databaseURL: "https://trainschedule-35655.firebaseio.com",
+    projectId: "trainschedule-35655",
+    storageBucket: "trainschedule-35655.appspot.com",
+    messagingSenderId: "1044891966814"
+  };
+  firebase.initializeApp(config);
+
+
+ // this was all copied from one of the activities to be used as a starting point since I missed the class explaining these concepts//
+ var randomDate = "02/23/1999";
+ var randomFormat = "MM/DD/YYYY";
+ var convertedDate = moment(randomDate, randomFormat);
+
+ //after creating the variables, start the process of logging every step of the way//
+ console.log(convertedDate.format("MM/DD/YY"));
+ console.log(convertedDate.format("MMM Do, YYYY hh:mm:ss"));
+ console.log(convertedDate.format("X"));
+ console.log("----------------------------------------");
+
+ //First change is made, console log again//
+ console.log(convertedDate.toNow());
+ console.log(convertedDate.diff(moment(), "years"));
+ console.log(convertedDate.diff(moment(), "months"));
+ console.log(convertedDate.diff(moment(), "days"));
+ console.log("----------------------------------------");
+
+ // create new variable with a new date to concole log after the convertion is done.......I think //
+ var newDate = moment("02/14/2001", randomFormat);
+ console.log(convertedDate.diff(newDate, "days"));
+
+ //this.......this I don't quite undertstand...better ask the TAs//
+ console.log(convertedDate.format("X"));
+ console.log("----------------------------------------");
+
+ //check what day of the week the date falls on//
+ console.log(convertedDate.format("DDD"));
+ console.log(convertedDate.format("dddd"));
+
+
+
+ // create a variable with the frequency //
+ var tFrequency = 3;
+
+ // set the time //
+ var firstTime = "09:15";
+
+ //Convert the first time //
+ var firstTimeConverted = moment(firstTime, "HH:mm").subtract(1, "years");
+ console.log(firstTimeConverted);
+
+ // Current Time //
+ var currentTime = moment();
+ console.log("CURRENT TIME: " + moment(currentTime).format("hh:mm"));
+
+ // Difference between the times //
+ var diffTime = moment().diff(moment(firstTimeConverted), "minutes");
+ console.log("DIFFERENCE IN TIME: " + diffTime);
+
+
+ var tRemainder = diffTime % tFrequency;
+ console.log(tRemainder);
+
+ // Train ETA //
+ var tMinutesTillTrain = tFrequency - tRemainder;
+ console.log("MINUTES TILL TRAIN: " + tMinutesTillTrain);
+
+ // create variable that sets the ETA of the next train //
+ var nextTrain = moment().add(tMinutesTillTrain, "minutes");
+ console.log("ARRIVAL TIME: " + moment(nextTrain).format("hh:mm"));
+   
+   
+   
+</script>
+
+
+</body>
+</html>
